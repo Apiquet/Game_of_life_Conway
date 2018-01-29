@@ -24,6 +24,9 @@ def main():
     board= initialize_board()
     pause = True
     
+    #number of the generation
+    generation = 0
+    
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -42,6 +45,8 @@ def main():
         #update the board state to the next generation
         if not pause:
             board = update_board(board)
+            generation += 1
+            print("Generation {}".format(generation))            
         #fill the window with only dead cells 
         window.fill(Cell_dead)
         #draw on the window each cell alive
