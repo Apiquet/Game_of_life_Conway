@@ -21,7 +21,6 @@ def main():
     pygame.display.set_caption("game of life")
     #creation of the window
     window = pygame.display.set_mode((WITDH,HEIGHT))
-    
     #creation of the board
     board= initialize_board()
     pause = True
@@ -40,13 +39,17 @@ def main():
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     pause = not pause
-                if event.key == K_r:
+                if event.key == K_r:                
+                    window.fill(Cell_dead)                    
                     board=initialize_board() 
                 if event.key == K_g:
+                    window.fill(Cell_dead)
                     board=glider_gun() 
                 if event.key == K_m:
+                    window.fill(Cell_dead)
                     board=max_structure() 
                 if event.key == K_b:
+                    window.fill(Cell_dead)
                     board=spaceship() 
                 #save structure
                 if event.key == K_s:
@@ -73,9 +76,10 @@ def main():
             board = update_board(board)
             generation += 1
             #display generation number
-            print("Generation {}".format(generation))            
-        #fill the window with only dead cells 
-        window.fill(Cell_dead)
+            print("Generation {}".format(generation)) 
+            #fill the window with only dead cells 
+            window.fill(Cell_dead)             
+               
         #draw on the window each cell alive
         for y in range(Nbr_Cell_y):
             for x in range(Nbr_Cell_x):
@@ -83,7 +87,14 @@ def main():
                     pygame.draw.rect(window, Cell_alive, (x * Cell_Size, y * Cell_Size, Cell_Size, Cell_Size))
         #display the result
         pygame.display.update()
-    
+        text_on_window(window, "r: refresh, g: gun plane, m: max, b: spaceship, space: pause", 5, 5)
+            
+        
+def text_on_window(screen, text, x, y, size = 28, color = (200, 000, 000), font_type = 'Comics San MS'):
+    text = str(text)
+    font = pygame.font.SysFont(font_type, size)
+    text = font.render(text, True, color)
+    screen.blit(text, (x, y))
     
 def initialize_board():
     return [[False for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
