@@ -10,7 +10,7 @@ Cell_Size= 8
 
 #Color cell = Blue
 Cell_alive = (68,101,182)
-Cell_dead = (0,0,0)
+Cell_dead = (255,255,255)
 
 WITDH = Nbr_Cell_x * Cell_Size
 HEIGHT = Nbr_Cell_y * Cell_Size
