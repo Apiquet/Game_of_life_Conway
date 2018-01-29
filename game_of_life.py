@@ -29,10 +29,16 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 quit()
+            #pause game with space key
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     pause = not pause
-            
+            #change cell state by clicking
+            if event.type == MOUSEBUTTONUP:
+                x, y = event.pos
+                x //= Cell_Size
+                y //= Cell_Size
+                board[y][x]= not board[y][x]            
         #update the board state to the next generation
         if not pause:
             board = update_board(board)
