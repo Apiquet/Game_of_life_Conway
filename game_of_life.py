@@ -22,14 +22,20 @@ def main():
     
     #creation of the board
     board= initialize_board()
+    pause = True
     
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 quit()
+            if event.type == KEYDOWN:
+                if event.key == K_SPACE:
+                    pause = not pause
+            
         #update the board state to the next generation
-        board = update_board(board)
+        if not pause:
+            board = update_board(board)
         #fill the window with only dead cells 
         window.fill(Cell_dead)
         #draw on the window each cell alive
