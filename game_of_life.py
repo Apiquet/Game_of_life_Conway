@@ -42,14 +42,21 @@ def main():
                     pause = not pause
                 if event.key == K_r:
                     board=initialize_board() 
+                if event.key == K_g:
+                    board=glider_gun() 
                 if event.key == K_UP:
-                    speed+=1                
+                    speed+=1 
+                
             #change cell state by clicking
             if event.type == MOUSEBUTTONUP:
                 x, y = event.pos
                 x //= Cell_Size
                 y //= Cell_Size
-                board[y][x]= not board[y][x]            
+                board[y][x]= not board[y][x]
+                #print coordinates in the right format to copy paste output in a function
+                #allow to create a big structure once and after juste copy paste outputs in a function
+                #like for def glider_gun()
+                #print("board[{}][{}] = True".format(y,x))
         #update the board state to the next generation
         if not pause:
             time.sleep(speed/5)
@@ -70,6 +77,52 @@ def main():
     
 def initialize_board():
     return [[False for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
+
+def glider_gun():
+    board = [[False for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
+    #coordinates come from outputs: print("board[{}][{}] = True".format(y,x))
+    #thanks to the line above just need to click on the board to create the structure,
+    #then, copy paste the outputs as I did for the following lines
+    board[60][8] = True
+    board[61][8] = True
+    board[61][9] = True
+    board[60][9] = True
+    board[61][18] = True
+    board[60][18] = True
+    board[59][18] = True
+    board[58][19] = True
+    board[62][19] = True
+    board[57][20] = True
+    board[57][21] = True
+    board[63][20] = True
+    board[63][21] = True
+    board[58][23] = True
+    board[59][24] = True
+    board[60][24] = True
+    board[61][24] = True
+    board[62][23] = True
+    board[60][25] = True
+    board[60][22] = True
+    board[61][28] = True
+    board[61][28] = True
+    board[61][28] = True
+    board[62][28] = True
+    board[63][28] = True
+    board[63][29] = True
+    board[62][29] = True
+    board[61][29] = True
+    board[60][30] = True
+    board[64][30] = True
+    board[60][32] = True
+    board[59][32] = True
+    board[64][32] = True
+    board[65][32] = True
+    board[63][42] = True
+    board[63][43] = True
+    board[62][43] = True
+    board[62][42] = True
+    return board
+    
 
 def update_board(board):
     next_board= initialize_board()
