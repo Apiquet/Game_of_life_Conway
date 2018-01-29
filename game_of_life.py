@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 
+import time
+
 Nbr_Cell_x= 70
 Nbr_Cell_y=70
 
@@ -25,7 +27,9 @@ def main():
     pause = True
     
     #number of the generation
-    generation = 0
+    generation = 0 
+    #speed of the game
+    speed = 0  
     
     while True:
         for event in pygame.event.get():
@@ -37,7 +41,9 @@ def main():
                 if event.key == K_SPACE:
                     pause = not pause
                 if event.key == K_r:
-                    board=initialize_board()                
+                    board=initialize_board() 
+                if event.key == K_UP:
+                    speed+=1                
             #change cell state by clicking
             if event.type == MOUSEBUTTONUP:
                 x, y = event.pos
@@ -46,6 +52,7 @@ def main():
                 board[y][x]= not board[y][x]            
         #update the board state to the next generation
         if not pause:
+            time.sleep(speed/5)
             board = update_board(board)
             generation += 1
             #display generation number
