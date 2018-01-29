@@ -36,6 +36,8 @@ def main():
             if event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     pause = not pause
+                if event.key == K_r:
+                    board=initialize_board()                
             #change cell state by clicking
             if event.type == MOUSEBUTTONUP:
                 x, y = event.pos
@@ -46,6 +48,7 @@ def main():
         if not pause:
             board = update_board(board)
             generation += 1
+            #display generation number
             print("Generation {}".format(generation))            
         #fill the window with only dead cells 
         window.fill(Cell_dead)
