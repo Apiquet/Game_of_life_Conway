@@ -60,18 +60,35 @@ def update_board(board):
     next_board= initialize_board()
     for x in range(Nbr_Cell_y):
         for y in range(Nbr_Cell_x):
-            neighbors = find_cell_neighbors(board, y, x)
+            neighbors = find_cell_neighbors(board, x, y)
             if neighbors == 3:
                 next_board[y][x] = True
             elif neighbors == 2:
                 next_board[y][x] = board[y][x]
             else:
                 pass
-        return next_board
+    return next_board
     
 def find_cell_neighbors(board, x, y):
     neighbors = 0
     #TODO: find nbr of neighbors
+    if x < Nbr_Cell_x-1 and x > 0 and y < Nbr_Cell_y-1 and y > 0:
+        if board[y][x+1]:
+            neighbors+=1
+        if board[y+1][x+1]:
+            neighbors+=1
+        if board[y-1][x+1]:
+            neighbors+=1    
+        if board[y][x-1]:
+            neighbors+=1
+        if board[y+1][x-1]:
+            neighbors+=1 
+        if board[y-1][x-1]:
+            neighbors+=1  
+        if board[y+1][x]:
+            neighbors+=1 
+        if board[y-1][x]:
+            neighbors+=1    
     return neighbors
    
 if __name__ == "__main__":
