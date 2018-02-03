@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-
+from random import randint
 import time
 
 Nbr_Cell_x = 70
@@ -42,6 +42,9 @@ def main():
                 if event.key == K_r:                
                     window.fill(Cell_dead)                    
                     board=initialize_board() 
+                if event.key == K_a:                
+                    window.fill(Cell_dead)                    
+                    board=random_board() 
                 if event.key == K_g:
                     window.fill(Cell_dead)
                     board=glider_gun() 
@@ -98,7 +101,9 @@ def text_on_window(screen, text, x, y, size = 28, color = (200, 000, 000), font_
     
 def initialize_board():
     return [[False for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
-
+def random_board() :
+    return [[randint(0,1) for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
+    
 def glider_gun():
     board = [[False for x in range(Nbr_Cell_x)] for y in range(Nbr_Cell_y)]
     #coordinates come from outputs: print("board[{}][{}] = True".format(y,x))
