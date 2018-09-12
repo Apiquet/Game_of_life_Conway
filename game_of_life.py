@@ -396,7 +396,6 @@ def update_board(board):
     
 def find_cell_neighbors(board, x, y):
     neighbors = 0
-    #TODO: find nbr of neighbors
     if x < Nbr_Cell_x-1 and x > 0 and y < Nbr_Cell_y-1 and y > 0:
         if board[y][x+1]:
             neighbors+=1
